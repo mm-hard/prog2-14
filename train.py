@@ -87,4 +87,18 @@ for k in range(n_epochs):
     print(f'test accuracy:{acc_test*100:3f}%')
 
 
-plt.plot(acc_train_history,label='')
+plt.plot(acc_train_history, label='train')
+plt.plot(acc_test_history, label='test')
+plt.xlabel('epochs')
+plt.ylabel('accuracy')
+plt.legend()
+plt.grid()
+plt.show()
+
+plt.plot(loss_train_history, label='train')
+plt.plot(loss_test_history, label='test')
+plt.xlabel('epochs')
+plt.ylabel('loss')
+plt.legend()
+plt.grid()
+plt.show()
