@@ -6,6 +6,9 @@ from torchvision import datasets
 import torchvision.transforms.v2 as transforms
 import models
 
+#追加
+device='cuda' if torch.cuda.is_available() else 'cpu'
+
 #データセットの前処理関数
 ds_transform=transforms.Compose([
         transforms.ToImage(),
@@ -47,10 +50,10 @@ for image_batch,label_batch in dataloader_test:
 model=models.mmModel()
 
 #精度を計算する
-acc_test=models.test_accuracy(model,dataloader_test)
+acc_train=models.test_accuracy(model,dataloader_test,device=device)
+print(f'test accuracy:{acc_train*100:.3f}%')
+acc_test=models.test_accuracy(model,dataloader_test,device=device)
 print(f'test accuracy:{acc_test*100:.3f}%')
-acc_test=models.test_accuracy(model,dataloader_test)
-#print(f'test accuracy:{acc_test*100:.3f}%')
 
 #ロス関数の選択
 loss_fn=torch.nn.CrossEntropyLoss()
